@@ -1,0 +1,49 @@
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-image: url(../image/PWD-Background.jpg);
+}
+.navbar {
+  width: 100%;
+  background-color: rgb(165, 163, 163);
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  opacity: 0.5;
+  transform: scale(1);
+}
+
+#Chat {
+  background-image: url(../image/PWD-Chat.png);
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 40px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#MemoryGame {
+  background-image: url(../image/PWD-MemoryGame.png);
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 40px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#FactGenerator {
+  background-image: url(../image/PWD-Fact.png);
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 40px;
+  display: inline-block;
+  cursor: pointer;
+}
