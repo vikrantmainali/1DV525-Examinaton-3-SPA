@@ -44,8 +44,8 @@
   "bin": {},
   "scripts": {
     "debug": "webpack-dev-server",
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && webpack-dev-server",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && webpack"
   },
   "standard": {
     "env": {
