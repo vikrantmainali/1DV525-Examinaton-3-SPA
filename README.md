@@ -1,5 +1,5 @@
 ## Examination assignment 3
-This is the assignment repo for the third assignment in the course. 
+This is the assignment repo for the third assignment in the 1DV525 Introduction to Web Programming course. 
 
 ## Installation
 Make sure node.js and npm is installed on your system.
