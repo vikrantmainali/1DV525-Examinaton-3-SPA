@@ -15,7 +15,7 @@ class PairCard { // Inner class to create card for the game
     this.addEventListeners()
   }
 
-  createCardContainer () { // Create DOM for individual cards to show on the grid
+  createCardContainer () { // Create card container element
     const container = document.createElement('img')
     container.setAttribute('class', 'pairsCard')
     container.classList.add('hidden')
@@ -50,7 +50,7 @@ class PairCard { // Inner class to create card for the game
     this.container.removeEventListener('click', this.handleClick)
   }
 
-  showCard () { // Flip card to show corresponding image
+  showCard () { // Flip card to reveal corresponding image
     this.isActive = false
     const src = `./../image/PairsGameIcons/${this.id}.png`
     this.rotateCard(src)
@@ -73,11 +73,11 @@ class PairCard { // Inner class to create card for the game
     }, 200)
   }
 
-  disable () {
+  disable () { // Used to disable card
     this.isActive = false
   }
 
-  enable () {
+  enable () { // Used to enable card
     this.isActive = true
   }
 }
@@ -103,7 +103,7 @@ class PairsGame extends BasicWindow {
     this.startGame = this.startGame.bind(this)
   }
 
-  createElement (tag, className, innerHTML = '', attributes = {}) {
+  createElement (tag, className, innerHTML = '', attributes = {}) { // Create DOM element
     const element = document.createElement(tag)
     element.className = className
     if (innerHTML) element.innerHTML = innerHTML
@@ -136,12 +136,12 @@ class PairsGame extends BasicWindow {
     this.initializeGame()
   }
 
-  initializeGame () {
+  initializeGame () { // Initialize game by loading cards and adding keyboard navigations
     this.loadCards()
     this.addKeyboardNavigation()
   }
 
-  loadCards () {
+  loadCards () { // Loads the cards into the game
     const pairsGameIcon = this.container.querySelector('.pairsGameIcon')
     if (pairsGameIcon) {
       pairsGameIcon.style.display = 'inline-block'
@@ -188,7 +188,7 @@ class PairsGame extends BasicWindow {
     this.cardObjects.forEach(card => card.enable())
   }
 
-  checkForMatch () {
+  checkForMatch () { // Check if the turned cards match
     if (this.turnedCards[0].id === this.turnedCards[1].id) {
       this.handleMatch()
     } else {
@@ -196,21 +196,21 @@ class PairsGame extends BasicWindow {
     }
   }
 
-  handleMatch () {
+  handleMatch () { // Remove click event listeners from matched cards
     this.turnedCards[0].removeClick()
     this.turnedCards[1].removeClick()
     this.cardObjects = this.cardObjects.filter(card => !this.turnedCards.includes(card))
     this.turnedCards = []
   }
 
-  handleMismatch () {
+  handleMismatch () { // Hide turned cards with delay if they don't match
     setTimeout(() => {
       this.turnedCards.forEach(card => card.hideCard())
       this.turnedCards = []
     }, 1000)
   }
 
-  shuffleCards () {
+  shuffleCards () { // Randomly shuffle the cards
     this.cards.sort(() => Math.random() - 0.5)
   }
 
@@ -218,7 +218,7 @@ class PairsGame extends BasicWindow {
     document.addEventListener('keydown', this.handleKeypress)
   }
 
-  handleKeypress (e) {
+  handleKeypress (e) { // Handle key press events for keyboard navigation and card selection
     const moveMap = {
       ArrowRight: 1,
       ArrowLeft: -1,
@@ -233,7 +233,7 @@ class PairsGame extends BasicWindow {
     }
   }
 
-  moveSelection (offset) {
+  moveSelection (offset) { // Move card selection based on keyboard input
     const currentIndex = this.cardObjects.indexOf(this.selectedCard)
     const newIndex = (currentIndex + offset + this.cardObjects.length) % this.cardObjects.length
     this.selectedCard.container.classList.remove('selectedCard')

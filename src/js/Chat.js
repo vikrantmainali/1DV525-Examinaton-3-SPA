@@ -22,7 +22,7 @@ class Chat extends BasicWindow {
     this.toggleEmojiPanel = this.toggleEmojiPanel.bind(this)
   }
 
-  initializeChat () {
+  initializeChat () { // Initialize chat by creating elements and checking for a stored username
     this.createChatElements()
     const storedUsername = window.localStorage.getItem('chatUsername')
     if (storedUsername) {
@@ -34,7 +34,7 @@ class Chat extends BasicWindow {
     }
   }
 
-  createChatElements () {
+  createChatElements () { // Create the elements that will be used to display in the chat window
     this.form = this.createElement('form', 'chat-form')
     this.emojiButton = this.createElement('div', 'emoji-button', '😃')
     this.emojiContainer = this.createElement('div', 'emoji-container')
@@ -46,7 +46,7 @@ class Chat extends BasicWindow {
     this.fetchAndPopulateEmojis()
   }
 
-  createElement (tag, className, innerHTML = '', attributes = {}) {
+  createElement (tag, className, innerHTML = '', attributes = {}) { // Create DOM elements
     const element = document.createElement(tag)
     element.className = className
     if (innerHTML) element.innerHTML = innerHTML
@@ -54,7 +54,7 @@ class Chat extends BasicWindow {
     return element
   }
 
-  promptForUsername () {
+  promptForUsername () { // Prompt for username if it's not stored
     this.form.classList.add('username-form')
     this.form.addEventListener('submit', this.saveUsername)
 
@@ -67,7 +67,7 @@ class Chat extends BasicWindow {
     }
   }
 
-  saveUsername (e) {
+  saveUsername (e) { // Store the username and setup the chat UI
     e.preventDefault()
     if (this.messageInput.value.trim()) {
       this.username = this.messageInput.value.trim()
@@ -111,7 +111,7 @@ class Chat extends BasicWindow {
     this.sendMessage()
   }
 
-  sendMessage () {
+  sendMessage () { // Send message via websocket
     const message = this.messageInput.value.trim()
     if (message) {
       this.webSocket.send(JSON.stringify({
@@ -125,14 +125,14 @@ class Chat extends BasicWindow {
     }
   }
 
-  handleWebSocketMessage (data) {
+  handleWebSocketMessage (data) { // Handle incoming messages
     if (data.type === 'message') {
       const messageItem = this.createElement('li', 'message-item', `${data.username}: ${data.data}`)
       this.messageList.appendChild(messageItem)
     }
   }
 
-  fetchAndPopulateEmojis () {
+  fetchAndPopulateEmojis () { // Fetch emojis from json file and populate emojis
     fetch('resources/emojis.json')
       .then(response => response.json())
       .then(emojis => {
@@ -147,7 +147,7 @@ class Chat extends BasicWindow {
       .catch(error => console.error('Error loading emojis:', error))
   }
 
-  toggleEmojiPanel (e) {
+  toggleEmojiPanel (e) { // Toggle visibility of emoji panel
     e.stopPropagation()
     if (this.emojiContainer.style.display === 'block') {
       this.closeEmojiContainer()
@@ -156,7 +156,7 @@ class Chat extends BasicWindow {
     }
   }
 
-  closeEmojiContainer () {
+  closeEmojiContainer () { // Close the emoji container
     this.emojiContainer.style.display = 'none'
   }
 }

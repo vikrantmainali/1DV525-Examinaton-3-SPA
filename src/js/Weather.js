@@ -22,7 +22,7 @@ class Weather extends BasicWindow {
     this.fetchWeatherData = this.fetchWeatherData.bind(this)
   }
 
-  createWeatherElements () { // Create the elements that will be used to display in the window
+  createWeatherElements () { // Create the elements that will be used to display in the weather window
     this.form = this.createElement('form', 'weather-form')
     this.weatherDisplay = this.createElement('div', 'weather-display')
     this.weatherDisplay.style.display = 'none'
@@ -33,7 +33,7 @@ class Weather extends BasicWindow {
     this.container.append(this.form, this.weatherDisplay)
   }
 
-  createElement (tag, className, innerHTML = '', attributes = {}) {
+  createElement (tag, className, innerHTML = '', attributes = {}) { // Crete DOM elements
     const element = document.createElement(tag)
     element.className = className
     if (innerHTML) element.innerHTML = innerHTML
