@@ -63,7 +63,7 @@ class Chat extends BasicWindow {
 
     const emojiButton = this.form.querySelector('.emoji-button')
     if (emojiButton) {
-      emojiButton.remove()
+      this.emojiButton.style.display = 'none'
     }
   }
 
@@ -88,6 +88,7 @@ class Chat extends BasicWindow {
     this.innerContainer.classList.add('chat-messages')
     this.messageList = this.createElement('ul', 'message-list')
     this.innerContainer.appendChild(this.messageList)
+    this.emojiButton.style.display = 'block'
   }
 
   addEventListeners () {
